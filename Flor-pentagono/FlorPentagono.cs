@@ -11,95 +11,78 @@ namespace Flor_pentagono
     public class FlorPentagono
     {
         //atributos
-        private double lado;
+        private float lado;
         //objeto de la clase Graphics
         private Graphics graph;
         //objeto de la clase Pen
         private Pen pen;
         //scale factor (Zoom In/Zoom Out)
-        private int sF = 10;
+        private static int sF = 10;
+
+        //coordenadas de los vertices del pentagono        
+        private float[] vA = new float[2];
+        private float[] vB = new float[2];
+        private float[] vC = new float[2];
+        private float[] vD = new float[2];
+        private float[] vE = new float[2];
+
 
         //constructor vacio
         public FlorPentagono()
         {
             lado = 0;
         }
-        public FlorPentagono(double lado)
+        public FlorPentagono(float lado)
         {
             this.lado = lado;
         }
 
         //getters y setters
-        public double getLado()
+        public float getLado()
         {
             return lado;
         }
-        public void setLado(double lado)
+        public void setLado(float lado)
         {
             this.lado = lado;
         }
-        public double getSF()
+        //calcular las coordenadas de los vertices del pentagono
+        public void calcularVertices()
         {
-            return sF;
-        }
-        public void setSF(int sF)
-        {
-            this.sF = sF;
+            //vertice A
+            vA[0] = lado * (float) Math.Cos(Math.PI / 5);
+            vA[1] = 0;
+            //vertice B
+            vB[0] = 0;
+            vB[1] = lado * (float) Math.Sin(Math.PI / 5);
+            //vertice C
+            vC[0] = 2 * lado * (float) Math.Cos(Math.PI / 5);
+            vC[1] = lado * (float) Math.Sin(Math.PI / 5);
+            //vertice D
+            vD[0] = lado * (float)Math.Sin(Math.PI / 10);
+            vD[1] = lado * (float)(Math.Sin(Math.PI / 5) + Math.Cos(Math.PI / 10));
+            //vertice E
+            vE[0] = lado * (float) (Math.Sin(Math.PI / 10) + 1);
+            vE[1] = lado * (float)(Math.Sin(Math.PI / 5) + Math.Cos(Math.PI / 10));
         }
 
-        //Calculos 
-        public double radioCircunscrito()
-        {
-            return lado / (2 * Math.Sin(Math.PI / 5));
-        }
-        //dibujar circulo circunscrito
-        public void dibujarCirculoCircunscrito(PictureBox picCanvas)
+        //dibujar el pentagono
+        public void dibujarPentagono(PictureBox picCanvas)
         {
             //crea un objeto de la clase Graphics
             graph = picCanvas.CreateGraphics();
             //crea un objeto de la clase Pen
-            pen = new Pen(Color.Black);
-            //dibuja el circulo circunscrito
-            graph.DrawEllipse(pen, (float)(picCanvas.Width / 2 - radioCircunscrito() * sF), (float)(picCanvas.Height / 2 - radioCircunscrito() * sF), (float)(2 * radioCircunscrito() * sF), (float)(2 * radioCircunscrito() * sF));
+            pen = new Pen(Color.Black, 2);
+            //calcular las coordenadas de los vertices del pentagono
+            calcularVertices();
+            //dibujar el pentagono
+            graph.DrawLine(pen, vA[0] * sF, vA[1] * sF, vB[0] * sF, vB[1] * sF);
+            graph.DrawLine(pen, vA[0] * sF, vA[1] * sF, vC[0] * sF, vC[1] * sF);
+            graph.DrawLine(pen, vB[0] * sF, vB[1] * sF, vD[0] * sF, vD[1] * sF);
+            graph.DrawLine(pen, vC[0] * sF, vC[1] * sF, vE[0] * sF, vE[1] * sF);
+            graph.DrawLine(pen, vD[0] * sF, vD[1] * sF, vE[0] * sF, vE[1] * sF);
         }
-        //dibujar pentagono circunscrito
-        public void dibujarPentagonoCircunscrito(PictureBox picCanvas)
-        {
-            //crea un objeto de la clase Graphics
-            graph = picCanvas.CreateGraphics();
-            //crea un objeto de la clase Pen
-            pen = new Pen(Color.Black);
-            //dibuja el pentagono circunscrito
-            for (int i = 0; i < 5; i++)
-            {
-                graph.DrawLine(pen, (float)(picCanvas.Width / 2 + radioCircunscrito() * sF * Math.Cos(2 * Math.PI * i / 5)), (float)(picCanvas.Height / 2 + radioCircunscrito() * sF * Math.Sin(2 * Math.PI * i / 5)), (float)(picCanvas.Width / 2 + radioCircunscrito() * sF * Math.Cos(2 * Math.PI * (i + 1) / 5)), (float)(picCanvas.Height / 2 + radioCircunscrito() * sF * Math.Sin(2 * Math.PI * (i + 1) / 5)));
-            }
-        }
-        //dibujar pentagono de la estrella de la flor
-        public void dibujarPentagonoEstrella(PictureBox picCanvas)
-        {
-            //crea un objeto de la clase Graphics
-            graph = picCanvas.CreateGraphics();
-            //crea un objeto de la clase Pen
-            pen = new Pen(Color.Red);
-            //dibuja el pentagono de la estrella
-            for (int i = 0; i < 5; i++)
-            {
-                graph.DrawLine(pen, (float)(picCanvas.Width / 2 + radioCircunscrito() * sF * Math.Cos(2 * Math.PI * i / 5)), (float)(picCanvas.Height / 2 + radioCircunscrito() * sF * Math.Sin(2 * Math.PI * i / 5)), (float)(picCanvas.Width / 2 + radioCircunscrito() * sF * Math.Cos(2 * Math.PI * (i + 2) / 5)), (float)(picCanvas.Height / 2 + radioCircunscrito() * sF * Math.Sin(2 * Math.PI * (i + 2) / 5)));
-            }
-        }
-        //dibujar pentagono central de la flor
-        public void dibujarPentagonoCentral(PictureBox picCanvas)
-        {
-            //crea un objeto de la clase Graphics
-            graph = picCanvas.CreateGraphics();
-            //crea un objeto de la clase Pen
-            pen = new Pen(Color.Blue);
-            //dibuja el pentagono central sin puntas de la estrella
-            for (int i = 0; i < 5; i++)
-            {
-                graph.DrawLine(pen, (float)(picCanvas.Width / 2 + radioCircunscrito() * sF * Math.Cos(2 * Math.PI * i / 5)), (float)(picCanvas.Height / 2 + radioCircunscrito() * sF * Math.Sin(2 * Math.PI * i / 5)), (float)(picCanvas.Width / 2 + radioCircunscrito() * sF * Math.Cos(2 * Math.PI * (i + 1) / 5)), (float)(picCanvas.Height / 2 + radioCircunscrito() * sF * Math.Sin(2 * Math.PI * (i + 1) / 5)));
-            }
-        }
+
+
     }
 }

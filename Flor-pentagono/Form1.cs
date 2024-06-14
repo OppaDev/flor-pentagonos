@@ -22,20 +22,13 @@ namespace Flor_pentagono
             //valida que el lado sea un numero positivo
             if (Validaciones.ladoPositivo(txtLado.Text))
             {
+                //limpia el PictureBox
+                picCanvas.Refresh();
                 //crea un objeto de la clase FlorPentagono
-                FlorPentagono flor = new FlorPentagono(Convert.ToDouble(txtLado.Text));
-                if (Convert.ToDouble(txtLado.Text) >= 30)
-                {
-                    flor.setSF(5);
-                }                
-                //dibuja el circulo circunscrito
-                flor.dibujarCirculoCircunscrito(picCanvas);
-                //dibuja el pentagono circunscrito
-                flor.dibujarPentagonoCircunscrito(picCanvas);
-                //dibujar pentagono central de la flor
-                flor.dibujarPentagonoEstrella(picCanvas);
-                //dibujar pentagono central de la flor
-                flor.dibujarPentagonoCentral(picCanvas);
+                FlorPentagono flor = new FlorPentagono(Convert.ToSingle(txtLado.Text));
+                //dibuja el pentagono
+                flor.dibujarPentagono(picCanvas);
+
             }
             else
             {

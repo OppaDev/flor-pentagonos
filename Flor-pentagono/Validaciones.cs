@@ -8,19 +8,18 @@ namespace Flor_pentagono
 {
     public class Validaciones
     {
-        //es doble positivo 
+        //validar que es numero float y es positivo
         public static bool ladoPositivo(string lado)
         {
-            double l;
-            if (double.TryParse(lado, out l))
+            float num;
+            if (float.TryParse(lado, out num))
             {
-                if (l > 0)
+                if (num > 0)
                 {
                     return true;
                 }
             }
             return false;
-
         }
     }
 }
