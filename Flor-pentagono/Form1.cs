@@ -12,6 +12,7 @@ namespace Flor_pentagono
 {
     public partial class Form1 : Form
     {
+        public Color selectedColor;
         public Form1()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace Flor_pentagono
                 //flor.dibujarEstrella(picCanvas);
                 //flor.dibujarCentro(picCanvas);
                 //flor.dibujarPetalos(picCanvas);
-                flor.dibujarFlor(picCanvas);
+                flor.dibujarFlor(picCanvas, selectedColor);
 
             }
             else
@@ -53,6 +54,16 @@ namespace Flor_pentagono
         {
             //cierra la aplicacion
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                selectedColor = colorDialog.Color;
+            }
         }
     }
 }
