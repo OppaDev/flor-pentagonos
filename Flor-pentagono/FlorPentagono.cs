@@ -316,8 +316,7 @@ namespace Flor_pentagono
             graph = picCanvas.CreateGraphics();
             //crea un objeto de la clase Pen
             pen = new Pen(Color.DarkCyan, 2);
-            //calcular las coordenadas de los vertices de los petalos
-            calcularVerticesPetalos();
+
             //dibujar los petalos
             graph.DrawLine(pen, vF[0] * sF, vF[1] * sF, vK[0] * sF, vK[1] * sF);
             graph.DrawLine(pen, vG[0] * sF, vG[1] * sF, vM[0] * sF, vM[1] * sF);
@@ -329,6 +328,43 @@ namespace Flor_pentagono
             graph.DrawLine(pen, vH[0] * sF, vH[1] * sF, vU[0] * sF, vU[1] * sF);
             graph.DrawLine(pen, vH[0] * sF, vH[1] * sF, vV[0] * sF, vV[1] * sF);
             graph.DrawLine(pen, vF[0] * sF, vF[1] * sF, vW[0] * sF, vW[1] * sF);
+        }
+        //dibujar flor de pentagonos
+        public void dibujarFlor(PictureBox picCanvas)
+        {
+            //crea un objeto de la clase Graphics
+            graph = picCanvas.CreateGraphics();
+            //crea un objeto de la clase Pen
+            pen = new Pen(Color.Black, 2);
+
+            //craer objeto brush para rellenar los petalos
+            SolidBrush brush = new SolidBrush(Color.Yellow);
+
+           //dibujar y pintar petalo FKAMG
+            PointF[] petalo1 = { new PointF(vF[0] * sF, vF[1] * sF), new PointF(vK[0] * sF, vK[1] * sF), new PointF(vA[0] * sF, vA[1] * sF), new PointF(vM[0] * sF, vM[1] * sF), new PointF(vG[0] * sF, vG[1] * sF) };
+            graph.FillPolygon(brush, petalo1);
+            graph.DrawPolygon(pen, petalo1);
+
+            //dibujar y pintar petalo GNCOI
+            PointF[] petalo2 = { new PointF(vG[0] * sF, vG[1] * sF), new PointF(vN[0] * sF, vN[1] * sF), new PointF(vC[0] * sF, vC[1] * sF), new PointF(vO[0] * sF, vO[1] * sF), new PointF(vI[0] * sF, vI[1] * sF) };
+            graph.FillPolygon(brush, petalo2);
+            graph.DrawPolygon(pen, petalo2);
+
+            //dibujar y pintar petalo IJSER
+            PointF[] petalo3 = { new PointF(vI[0] * sF, vI[1] * sF), new PointF(vJ[0] * sF, vJ[1] * sF), new PointF(vS[0] * sF, vS[1] * sF), new PointF(vE[0] * sF, vE[1] * sF), new PointF(vR[0] * sF, vR[1] * sF) };
+            graph.FillPolygon(brush, petalo3);
+            graph.DrawPolygon(pen, petalo3);
+
+            //dibujar y pintar petalo JTDUH
+            PointF[] petalo4 = { new PointF(vJ[0] * sF, vJ[1] * sF), new PointF(vT[0] * sF, vT[1] * sF), new PointF(vD[0] * sF, vD[1] * sF), new PointF(vU[0] * sF, vU[1] * sF), new PointF(vH[0] * sF, vH[1] * sF) };
+            graph.FillPolygon(brush, petalo4);
+            graph.DrawPolygon(pen, petalo4);
+
+            //dibujar y pintar petalo HVBWF
+            PointF[] petalo5 = { new PointF(vH[0] * sF, vH[1] * sF), new PointF(vV[0] * sF, vV[1] * sF), new PointF(vB[0] * sF, vB[1] * sF), new PointF(vW[0] * sF, vW[1] * sF), new PointF(vF[0] * sF, vF[1] * sF) };
+            graph.FillPolygon(brush, petalo5);
+            graph.DrawPolygon(pen, petalo5);
+            
         }
 
     }

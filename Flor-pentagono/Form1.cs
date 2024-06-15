@@ -27,11 +27,12 @@ namespace Flor_pentagono
                 //crea un objeto de la clase FlorPentagono
                 FlorPentagono flor = new FlorPentagono(Convert.ToSingle(txtLado.Text));
                 //dibuja el pentagono
-                flor.dibujarPentagono(picCanvas);
+                //flor.dibujarPentagono(picCanvas);
                 //dibujar estrella
-                flor.dibujarEstrella(picCanvas);
-                flor.dibujarCentro(picCanvas);
-                flor.dibujarPetalos(picCanvas);
+                //flor.dibujarEstrella(picCanvas);
+                //flor.dibujarCentro(picCanvas);
+                //flor.dibujarPetalos(picCanvas);
+                flor.dibujarFlor(picCanvas);
 
             }
             else
