@@ -21,5 +21,15 @@ namespace Flor_pentagono
             }
             return false;
         }
+
+        public static bool mayorAlVisible(string lado)
+        {
+            float.TryParse(lado, out float num);
+            if (num > 31)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -330,12 +330,13 @@ namespace Flor_pentagono
             graph.DrawLine(pen, vF[0] * sF, vF[1] * sF, vW[0] * sF, vW[1] * sF);
         }
         //dibujar flor de pentagonos
-        public void dibujarFlor(PictureBox picCanvas, Color selectedColor)
+        public void dibujarFlor(PictureBox picCanvas, Color selectedColor, bool darkModeEnable)
         {
             //crea un objeto de la clase Graphics
             graph = picCanvas.CreateGraphics();
             //crea un objeto de la clase Pen
-            pen = new Pen(Color.Black, 2);
+
+            pen = darkModeEnable ? new Pen(Color.White, 2) : new Pen(Color.Black, 2);
 
             //crear objeto brush para rellenar los petalos
             SolidBrush brush = new SolidBrush(selectedColor);
